@@ -6,53 +6,8 @@
 
 <md-content class="md-padding">
     <div class="col-sm-3 col-md-6">
-        <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
-       	   <md-card-title>
-              <md-card-title-text>
-              <span class="md-headline">Registre-se</span>
-               </md-card-title-text>
-           </md-card-title>
-           <md-card-content layout="row" layout-align="space-between">
-        		<section class="main-container">
-        		<md-content class="md-padding" layout-xs="column" layout="row">
-        	<form name="projectForm">
-		      <md-input-container class="md-block">
-			        <label>Email</label>
-			        <input required type="email" name="email" ng-model="project.clientEmail"
-		               minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-		
-		        	<div ng-messages="projectForm.clientEmail.$error" role="alert">
-		          	<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
-		            Por favor, insira um email valido.
-		          	</div>
-		        	</div>
-      			</md-input-container>
-		      <div>
-			    <md-input-container flex="50">
-		          <label>Nome</label>
-		          <input required name="nome" ng-model="project.clientName">
-		          <div ng-messages="projectForm.clientName.$error">
-		            <div ng-message="required">Você precisa de um nome de usuario</div>
-		          </div>
-		        </md-input-container>
- 				<md-input-container class="md-block">
-			        <label>Senha</label>
-			        <input required type="password" name="password" ng-model="project.clientPassword"
-		               minlength="10" maxlength="100">
-		
-		        	<div ng-messages="projectForm.clientPassword.$error" role="alert">
-			          	<div ng-message-exp="[''minlength', 'maxlength']">
-			            Sua senha deve ter no minimo 6 caracteres.
-			          	</div>
-		        	</div>
-      			</md-input-container>
-      			</div>
-      			<div>
-		        	<md-button type="submit" class="md-raised md-primary md-transclude" ng-click="register(email, password, username)">Registrar</md-button>
-		      	</div>
-		    </form>
-  
-        	
+        <section class="main-container">
+        <md-content class="md-padding" layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs="100" layout="column">
                 <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
                     <md-card-title>
@@ -74,14 +29,12 @@
                                 
                     <md-card-content layout="row" layout-align="space-between">
                         <md-card-actions layout="row" layout-align="end center" style="margin-left: 320px">
-                            <md-button type="submit" class="md-raised md-primary md-transclude" ng-click="register(email, password, username)">Cadastrar</md-button>
+                            <md-button class="md-raised md-primary md-transclude" ng-click="register(email, password, username)">Cadastrar</md-button>
                         </md-card-actions>
                     </md-card-content>
                 </md-card>
             </div>
         </md-content>
-        
-        
         <md-content class="md-padding" layout-xs="column" layout="row">
             <div flex-xs flex-gt-xs="100" layout="column">
                 <md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
@@ -101,7 +54,7 @@
                                 
                     <md-card-content layout="row" layout-align="space-between">
                         <md-card-actions layout="row" layout-align="end center" style="margin-left: 320px">
-                            <md-button type="submit" class="md-raised md-primary md-transclude" ng-click="login(useremail, userpassword)">Login</md-button>
+                            <md-button class="md-raised md-primary md-transclude" ng-click="login(useremail, userpassword)">Login</md-button>
                         </md-card-actions>
                     </md-card-content>
                 </md-card>
