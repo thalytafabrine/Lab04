@@ -1,0 +1,18 @@
+.md-tab.md-active {
+	background-color: moccasin;
+}
+
+md-input-container {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.md-button {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.md-media-lg.card-media {
+	width: 260px;
+	height: 390px;
+}

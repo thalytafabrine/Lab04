@@ -1,0 +1,135 @@
+<md-card>
+	<div ng-cloak>
+		<md-content>
+			<md-tabs md-dynamic-height md-border-bottom>
+				<!--página inicial, exibe o conteudo das buscas-->
+				<md-tab label="Pagina inicial">
+					<md-content class="md-padding">
+
+						<!-- caixinha de busca -->
+						<md-card-header>
+							<md-input-container>
+								<input type="text" ng-model="serie.Title" placeholder="Pesquisar serie">
+								<md-button class="md-raised md-primary md-transclude" style="margin-left: 200px !important;" ng-click="buscarSerie(serie.Title)" ng-disabled="!serie.Title">pesquisar</md-button>
+								{{serie.Nome}}
+								</md-input-container>
+							</md-card-header>
+							
+							<!-- lista de series que vai vir na busca. -->
+
+							<md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch ng-repeat="serie in series track by $index">
+								<md-card-title>
+									<md-card-title-text>
+										<span class="md-headline">{{serie.Title}}</span>
+									</md-card-title-text>
+									<md-card-title-media>
+										<img class="md-media-lg card-media" src="{{serie.Poster}}">
+									</md-card-title-media>
+								</md-card-title>
+								<md-card-content layout="row" layout-align="space-between">
+									<md-card-actions layout="row" layout-align="end center">
+										<md-button class="md-raised md-primary md-transclude" ng-click="addSerieWatchlist(serie)">Watchlist</md-button>
+										<md-button class="md-raised md-primary md-transclude" ng-click="addSerieProfile(serie)">Minhas séries</md-button>
+										<md-button class="md-raised md-primary md-transclude" ng-click="verInfo($event, serie)">Ver mais</md-button>
+									</md-card-actions>
+								</md-card-content>
+							</md-card>
+						</md-content>
+					</md-tab>
+
+					<!--watchlist-->
+					<md-tab label="Watchlist" class="active">
+						<md-content class="md-padding">
+							<h1 class="md-display-2">Watchlist</h1>
+							<br>
+							
+							<!--lista das series da watchlist-->
+							<div class="col-sm-3 col-md-6" ng-repeat="serie in watchlist track by $index">
+
+								<md-content class="md-padding" layout-xs="column" layout="row">
+									<div flex-xs flex-gt-xs="100" layout="column">
+										<md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+											<md-card-title>
+												<md-card-title-text>
+													<span class="md-headline">{{serie.Title}}</span>
+												</md-card-title-text>
+												<md-card-title-media>
+													<img class="md-media-lg card-media" src="{{serie.Poster}}">
+												</md-card-title-media>
+											</md-card-title>
+											<md-card-content layout="row" layout-align="space-between">
+												<md-card-actions layout="row" layout-align="end center" style="margin-left: 310px">
+													<md-button class="md-raised md-primary md-transclude" ng-click="addSerieProfile(serie)">Minhas séries</md-button>
+													<md-button class="md-raised md-primary md-transclude" ng-click="verInfo($event, serie)">Ver mais</md-button>
+												</md-card-actions>
+											</md-card-content>
+										</md-card>
+									</div>
+								</md-content>
+							</div>
+							<br>
+						</md-content>
+					</md-tab>
+
+
+					<!--pagina do perfil-->
+					<md-tab label="Perfil">
+						<md-content class="md-padding">
+							<h1 class="md-display-3">Perfil</h1>
+							<br>
+							
+							<div class="col-sm-3 col-md-6" ng-repeat="serie in profile track by $index">
+
+								<md-content class="md-padding" layout-xs="column" layout="row">
+									<div flex-xs flex-gt-xs="100" layout="column">
+										<md-card md-theme="{{ showDarkTheme ? 'dark-orange' : 'default' }}" md-theme-watch>
+											<md-card-title>
+												<md-card-title-text>
+													<span class="md-headline">{{serie.Title}}</span>
+													<span class="md-subhead" style="margin-top: 20px">
+
+														Último episódio assistido: {{episodiosVistos[$index]}}</br>
+														Sua nota para "{{serie.Title}}": {{notas[$index]}}
+														<md-input-container style="margin-top: 30px; margin-right: 40px">
+															<input type="text" ng-model="episodioVisto" placeholder="Marcar episódio assistido">
+															<md-button class="md-raised md-primary md-transclude" ng-click="marcarEpisodio(episodioVisto, serie)">marcar como assistido</md-button>
+														</md-input-container>
+														<md-input-container style="margin-right: 40px">
+															<input type="text" ng-model="nota" placeholder="Atribuir uma nota à série">
+															<md-button class="md-raised md-primary md-transclude" ng-click="atribuirNota(nota, serie)">atribuir nota</md-button>
+														</md-input-container>
+													</span>
+
+												</md-card-title-text>
+												<md-card-title-media>
+													<img class="md-media-lg card-media" src="{{serie.Poster}}">
+												</md-card-title-media>
+											</md-card-title>
+								
+											<md-card-content layout="row" layout-align="space-between">
+												<md-card-actions layout="row" layout-align="end center" style="margin-left: 320px">
+													<md-button class="md-raised md-primary md-transclude" ng-click="verInfo($event, serie)">Ver mais</md-button>
+													<md-button class="md-raised md-primary md-transclude" ng-click="removeSerieProfile(serie)">Remover</md-button>
+												</md-card-actions>
+											</md-card-content>
+										</md-card>
+									</div>
+								</md-content>
+							</div>
+
+							<br>
+						</md-content>
+					</md-tab>
+					
+			</md-tabs>
+		</md-content>
+	</div>
+</md-card>
+
+<!-- colocados no fim do documento para carregamento mais rapido da pagina -->
+<script src="lib/angular/angular.min.js"></script>
+<script src="lib/angular/angular-material.min.js"></script>
+<script src="lib/angular/angular-animate.min.js"></script>
+<script src="lib/angular/angular-aria.min.js"></script>
+<script src="lib/angular/angular-messages.min.js"></script>
+<script src="assets/js/main.js"></script>
